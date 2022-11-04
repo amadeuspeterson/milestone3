@@ -1,8 +1,13 @@
 package edu.byu.cs.tweeter.server.service;
 
+import edu.byu.cs.tweeter.model.domain.AuthToken;
+import edu.byu.cs.tweeter.model.domain.User;
+import edu.byu.cs.tweeter.model.net.request.FollowersRequest;
 import edu.byu.cs.tweeter.model.net.request.FollowingRequest;
+import edu.byu.cs.tweeter.model.net.response.FollowersResponse;
 import edu.byu.cs.tweeter.model.net.response.FollowingResponse;
 import edu.byu.cs.tweeter.server.dao.FollowDAO;
+import jdk.jfr.Frequency;
 
 /**
  * Contains the business logic for getting the users a user is following.
@@ -26,6 +31,16 @@ public class FollowService {
         }
         return getFollowingDAO().getFollowees(request);
     }
+
+    // AuthToken authToken, User targetUser, int limit, User lastFollower, IPageObserver<User> observer
+//    public FollowersResponse getFollowers(FollowersRequest request) {
+//        if(request.getFolloweeAlias() == null) {
+//            throw new RuntimeException("[Bad Request] Request needs to have a follower alias");
+//        } else if(request.getLimit() <= 0) {
+//            throw new RuntimeException("[Bad Request] Request needs to have a positive limit");
+//        }
+//        return getFollowingDAO().getFollowers(request);
+//    }
 
     /**
      * Returns an instance of {@link FollowDAO}. Allows mocking of the FollowDAO class
